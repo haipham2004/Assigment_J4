@@ -70,4 +70,11 @@ public class NhanVien implements Serializable {
 
     @Column(name = "TrangThai")
     private int trangThai;
+
+    @Column(name = "roles")
+    private String roles;
+
+    @Column(name = "isStaff")
+    private int isStaff;
+
 }

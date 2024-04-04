@@ -51,7 +51,7 @@
         </div>
         <div class="mt-3">
             <lable>Thành Phố</lable>
-            <input type="text" class="form-control" name="thanhPho" value="${mtam.quocGia}">
+            <input type="text" class="form-control" name="thanhPho" value="${mtam.thanhPho}">
         </div>
         <div class="mt-3">
             <lable>Quốc gia</lable>

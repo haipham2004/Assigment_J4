@@ -7,6 +7,11 @@ import com.example.Assigment2_J4.entity.NhaSanXuat;
 import com.example.Assigment2_J4.entity.SanPham;
 import com.example.Assigment2_J4.request.ChiTietSanPhamRequest;
 import com.example.Assigment2_J4.service.Imp.ChiTietSanPhamImp;
+import com.example.Assigment2_J4.service.Imp.DongSanPhamImp;
+import com.example.Assigment2_J4.service.Imp.MauSacImp;
+import com.example.Assigment2_J4.service.Imp.NhaSanXuatImp;
+import com.example.Assigment2_J4.service.Imp.NhanVienImp;
+import com.example.Assigment2_J4.service.Imp.SanPhamImp;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -79,10 +84,26 @@ public class ChiTietSanPhamController extends HttpServlet {
         System.out.println("lalaa");
         ChiTietSanPham ChiTietSanPham = service.getOne(id);
         request.setAttribute("mtam", ChiTietSanPham);
+        List<SanPham> listSP=new SanPhamImp().getAll();
+        request.setAttribute("listSP",listSP);
+        List<NhaSanXuat> listNSX=new NhaSanXuatImp().getAll();
+        request.setAttribute("listNSX",listNSX);
+        List<MauSac> listMS=new MauSacImp().getAll();
+        request.setAttribute("listMS",listMS);
+        List<DongSanPham> listDSP=new DongSanPhamImp().getAll();
+        request.setAttribute("listDSP",listDSP);
         request.getRequestDispatcher("/view/UpdateChiTietSanPham.jsp").forward(request, response);
     }
 
     private void viewAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<SanPham> listSP=new SanPhamImp().getAll();
+        request.setAttribute("listSP",listSP);
+        List<NhaSanXuat> listNSX=new NhaSanXuatImp().getAll();
+        request.setAttribute("listNSX",listNSX);
+        List<MauSac> listMS=new MauSacImp().getAll();
+        request.setAttribute("listMS",listMS);
+        List<DongSanPham> listDSP=new DongSanPhamImp().getAll();
+        request.setAttribute("listDSP",listDSP);
         request.getRequestDispatcher("/view/AddChiTietSanPham.jsp").forward(request, response);
     }
 
@@ -116,10 +137,8 @@ public class ChiTietSanPhamController extends HttpServlet {
         chiTietSanPhamRequest.setNhaSanXuat(nhaSanXuat);
         chiTietSanPhamRequest.setMauSac(mauSac);
         chiTietSanPhamRequest.setDongSanPham(dongSanPham);
-
-        System.out.println("Chi tiết sản phẩm: " + chiTietSanPhamRequest);
-
-        System.out.println("Toi là Add: "+ service.updateChiTietSanPhamRequest(chiTietSanPhamRequest));
+        chiTietSanPhamRequest.setId(id);
+        service.updateChiTietSanPhamRequest(chiTietSanPhamRequest);
         response.sendRedirect("/HienThiChiTietSanPham");
     }
 
@@ -146,8 +165,6 @@ public class ChiTietSanPhamController extends HttpServlet {
         chiTietSanPhamRequest.setNhaSanXuat(nhaSanXuat);
         chiTietSanPhamRequest.setMauSac(mauSac);
         chiTietSanPhamRequest.setDongSanPham(dongSanPham);
-
-        System.out.println("Chi tiết sản phẩm: " + chiTietSanPhamRequest);
 
         System.out.println("Toi là Add: "+ service.addChiTietSanPhamRequest(chiTietSanPhamRequest));
         response.sendRedirect("/HienThiChiTietSanPham");

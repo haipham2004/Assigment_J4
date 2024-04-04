@@ -11,11 +11,12 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet(name = "Login", value = {
+@WebServlet(name = "LoginServlet", value = {
         "/viewLogin",
-        "/FormLogin"
+        "/FormLogin",
+        "/Logins14"
 })
-public class Login extends HttpServlet {
+public class LoginServlet extends HttpServlet {
     NhanVienRepository repo=new NhanVienRepository();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +24,6 @@ public class Login extends HttpServlet {
             if(uri.contains("viewLogin")){
                 viewLogin(request,response);
             }
-        System.out.println("111111111111");
     }
 
     @Override
@@ -32,14 +32,13 @@ public class Login extends HttpServlet {
         if(uri.contains("FormLogin")){
             formLogin(request,response);
         }
-        System.out.println("222222222222222");
+
     }
     private void viewLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/view/viewLogin.jsp").forward(request,response);
     }
 
     private void formLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("hi");
         String userName=request.getParameter("userName");
         String password=request.getParameter("password");
         request.setAttribute("userName",userName);
@@ -62,8 +61,9 @@ public class Login extends HttpServlet {
             if(nhanVien!=null){
                 HttpSession session=request.getSession();
                 session.setAttribute("userName",userName);
+                System.out.println("USER NAME: "+userName);
                 session.setAttribute("nhanVienTaiKhoan",nhanVien);
-                request.getRequestDispatcher("/view/Aoke.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/ATrangChu.jsp").forward(request,response);
             }else{
                 request.setAttribute("baoLoiTaiKhoan","Tài khoản không tồn tại");
                 request.getRequestDispatcher("/view/viewLogin.jsp").forward(request,response);
