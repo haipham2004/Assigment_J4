@@ -78,7 +78,7 @@ public class NhanVienRepository {
         NhanVien nhanVien=null;
         try(Session session= HibernateUtil.getFACTORY().openSession()){
             transaction= session.beginTransaction();
-            Query query=session.createQuery("From NhanVien where Ma=:usernames and MatKhau=:passwords",NhanVien.class);
+            Query query=session.createQuery("From NhanVien where ma=:usernames and MatKhau=:passwords",NhanVien.class);
             query.setParameter("usernames",usernames);
             query.setParameter("passwords",passwords);
             nhanVien= (NhanVien) query.getSingleResult();

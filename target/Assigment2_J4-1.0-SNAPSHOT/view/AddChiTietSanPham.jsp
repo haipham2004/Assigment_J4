@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>ADD</title>
@@ -19,19 +20,35 @@
     <form action="/AddChiTietSanPham" method="post">
         <div class="mt-3">
             <lable>Mã sản phẩm</lable>
-            <input type="text" class="form-control" name="sanPham.id">
+            <select class="form-select" aria-label="Default select example" name="sanPham.id">
+                <c:forEach items="${listSP}" var="a">
+                    <option value="${a.id}">${a.ten}</option>
+                </c:forEach>
+            </select>
         </div>
         <div class="mt-3">
             <lable>Mã nhà sản xuất</lable>
-            <input type="text" class="form-control" name="nhaSanXuat.id">
+            <select class="form-select" aria-label="Default select example" name="nhaSanXuat.id">
+                <c:forEach items="${listNSX}" var="a">
+                    <option value="${a.id}">${a.ten}</option>
+                </c:forEach>
+            </select>
         </div>
         <div class="mt-3">
             <lable>Mã màu sắc</lable>
-            <input type="text" class="form-control" name="mauSac.id">
+            <select class="form-select" aria-label="Default select example" name="mauSac.id">
+                <c:forEach items="${listMS}" var="a">
+                    <option value="${a.id}">${a.ten}</option>
+                </c:forEach>
+            </select>
         </div>
         <div class="mt-3">
             <lable>Mã dòng sản phẩm</lable>
-            <input type="text" class="form-control" name="dongSanPham.id">
+            <select class="form-select" aria-label="Default select example" name="dongSanPham.id">
+                <c:forEach items="${listDSP}" var="a">
+                    <option value="${a.id}">${a.ten}</option>
+                </c:forEach>
+            </select>
         </div>
         <div class="mt-3">
             <lable>Năm bán hàng</lable>

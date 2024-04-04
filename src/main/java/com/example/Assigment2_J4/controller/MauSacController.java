@@ -58,7 +58,7 @@ public class MauSacController extends HttpServlet {
         list=service.getAll();
         request.setAttribute("list",list);
         System.out.println("haha");
-        request.getRequestDispatcher("/view/ListGioHangChiTiets.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/ListMauSac.jsp").forward(request,response);
     }
 
 
@@ -73,19 +73,19 @@ public class MauSacController extends HttpServlet {
         int id=Integer.parseInt(request.getParameter("id"));
         MauSac mauSac=service.getOne(id);
         request.setAttribute("mtam",mauSac);
-        request.getRequestDispatcher("/view/UpdateGioHangChiTiet.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/UpdateMauSac.jsp").forward(request,response);
     }
 
     private void viewAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Lala");
-        request.getRequestDispatcher("/view/AddGioHangChiTiet.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/AddMauSac.jsp").forward(request,response);
     }
 
     private void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id=Integer.parseInt(request.getParameter("id"));
         MauSac mauSac=service.getOne(id);
         request.setAttribute("mtam",mauSac);
-        request.getRequestDispatcher("/view/UpdateGioHangChiTiet.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/UpdateMauSac.jsp").forward(request,response);
     }
 
     private void Update(HttpServletRequest request, HttpServletResponse response) throws IOException {

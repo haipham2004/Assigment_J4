@@ -12,31 +12,30 @@
 //import jakarta.servlet.http.HttpSession;
 //
 //import java.io.IOException;
-//@WebFilter({"/*"})
-//public class AuthenFilter implements Filter {
+//
+//@WebFilter({"/Login"})
+//public class Filter2 implements Filter {
 //    @Override
-//    public void init(FilterConfig filterConfig) throws ServletException {
-//        Filter.super.init(filterConfig);
+//    public void init(FilterConfig config) throws ServletException {
+//        Filter.super.init(config);
 //    }
+//    @Override
 //    public void destroy() {
 //        Filter.super.destroy();
-//        System.out.println("Khi destroy ");
 //    }
+//
 //    @Override
 //    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 //        HttpServletRequest request = (HttpServletRequest) servletRequest;
 //        HttpServletResponse response = (HttpServletResponse) servletResponse;
-//        HttpSession session = request.getSession();
-//        String name = (String) session.getAttribute("userName");
-//        System.out.println("name đây: "+null);
-//        if(name==null){
-//            System.out.println("haha tao là filter");
-//            request.getRequestDispatcher("/view/viewLogin.jsp").forward(request,response);
-//        }else{
+//        HttpSession session = request.getSession(false);
+//
+//        if(session != null && session.getAttribute("userName")!=null){
 //            System.out.println("login ok");
 //            filterChain.doFilter(request,response);
+//        }else{
+//            System.out.println("haha tao là filter");
+//            request.getRequestDispatcher("/view/viewLogin.jsp").forward(request,response);
 //        }
 //    }
-//
-//
 //}
